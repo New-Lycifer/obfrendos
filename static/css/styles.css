@@ -137,3 +137,13 @@ h2 {
 img.img-thumbnail {
     border: 2px solid #ddd;
 }
+
+.custom-clearable-file-input .custom-file-upload {
+    background-color: #007bff; /* Цвет фона */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем границы */
+    padding: 8px 16px; /* Внутренние отступы */
+    border-radius: 4px; /* Скругление углов */
+    cursor: pointer; /* Курсор при наведении */
+    font-size: 14px; /* Размер шрифта */
+}

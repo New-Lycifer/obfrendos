@@ -53,11 +53,12 @@ def edit_profile(request):
         form = ProfileEditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('profile', user.id)  # Переход на страницу профиля с передачей user.id
+            return redirect('profile', user.id)
     else:
         form = ProfileEditForm(instance=user)
 
-    return render(request, 'users/edit_profile.html', {'form': form, 'title': title})
+    return render(request, 'users/edit_profile.html', {'form': form, 'title': title, 'user': user})
+
 
 
 def privacy_policy(request):

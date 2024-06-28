@@ -1,29 +1,64 @@
+<!-- edit_profile.html -->
+
 {% extends 'base.html' %}
 {% load static %}
 
 {% block title %}
-  {{ title }}
+    {{ title }}
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h2 class="text-center mb-4">{{ title }}</h2>
     <div class="row justify-content-center">
-        <div class="col-md-4 text-center">
-            {% if user.photo %}
-                <img src="{{ user.photo.url }}" alt="User Photo" class="img-thumbnail rounded-circle mb-3" style="width: 200px; height: 200px;">
-            {% else %}
-                <img src="{% static 'images/default_user.png' %}" alt="Default User Photo" class="img-thumbnail rounded-circle mb-3" style="width: 200px; height: 200px;">
-            {% endif %}
-        </div>
-        <div class="col-md-8">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary mt-3">Сохранить изменения</button>
-                <a href="{% url 'profile' user.id %}" class="btn btn-secondary mt-3">Перейти к профилю</a>
-            </form>
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">{{ title }}</h1>
+                    <hr>
+                    <div class="text-center mb-4">
+                        {% if user.photo %}
+                            <img src="{{ user.photo.url }}" alt="User Photo" class="img-thumbnail rounded-circle" style="width: 200px; height: 200px;">
+                        {% else %}
+                            <img src="{% static 'images/default_user.png' %}" alt="Default User Photo" class="img-thumbnail rounded-circle" style="width: 200px; height: 200px;">
+                        {% endif %}
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.first_name.label_tag }}
+                            {{ form.first_name }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.last_name.label_tag }}
+                            {{ form.last_name }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.bdate.label_tag }}
+                            {{ form.bdate }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.photo.label_tag }}
+                            {{ form.photo }}
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3 w-100">Сохранить изменения</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="{% url 'profile' user.id %}" class="btn btn-secondary">Перейти к профилю</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Подключение стилей -->
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock %}

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.forms import ClearableFileInput
 
 from users.models import LocalUser
 
@@ -18,10 +19,10 @@ class RegistrationForm(forms.ModelForm):
             'bdate': forms.DateInput(attrs={'type': 'date'})
         }
         labels = {
-            'bdate': 'Date of Birth'
+            'bdate': 'Дата рождения'
         }
         help_texts = {
-            'bdate': 'Enter your date of birth'
+            'bdate': 'Введите дату рождения...'
         }
 
     def clean_password2(self):
@@ -44,23 +45,47 @@ class PhotoUploadForm(forms.ModelForm):
         fields = ['photo']
 
 
+class CustomClearableFileInput(ClearableFileInput):
+    initial_text = ('')
+    clear_checkbox_label = ('удалить фото')
+    input_text = ('Изменить')
+
+    def __init__(self, attrs=None):
+        if attrs is None:
+            attrs = {}
+        # Добавляем стиль для отступа между строками
+        attrs['style'] = 'margin-top: 15px;'  # Пример отступа в 10 пикселей
+        attrs['class'] = 'custom-clearable-file-input'  # Пример класса для общего стиля
+        super().__init__(attrs)
+
+    def render(self, name, value, attrs=None, renderer=None):
+        # Рендерим виджет и добавляем кастомные CSS классы
+        rendered = super().render(name, value, attrs, renderer)
+        return rendered
+
+    def format_value(self, value):
+        # Форматируем значение, если необходимо
+        return super().format_value(value)
+
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = LocalUser
-        fields = ['photo', 'first_name', 'last_name', 'bdate', 'email']
-        widgets = {
-            'bdate': forms.DateInput(attrs={'type': 'date'})
-        }
+        fields = ['username', 'first_name', 'last_name', 'bdate', 'email', 'photo']
         labels = {
             'username': 'Имя пользователя',
             'first_name': 'Имя',
             'last_name': 'Фамилия',
-            'email': 'Email',
             'bdate': 'Дата рождения',
-            'photo': 'Фото'
+            'email': 'Email',
+            'photo': 'Фото профиля',
         }
-        help_texts = {
-            'bdate': 'Введите дату рождения....'
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'bdate': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'photo': CustomClearableFileInput,
         }
 
 
