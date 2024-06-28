@@ -1,13 +1,60 @@
-{% extends 'base.html '%}
+{% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
-  {{ title }}
+    {{ title }}
 {% endblock %}
+
 {% block content %}
-  <h2>Регистрация</h2>
-  <form method="post">
-    {% csrf_token %}
-    <!-- Вывод формы регистрации -->
-    {{ user_form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
-  </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Регистрация</h1>
+                    <hr>
+
+                    {% if user_form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Ошибка:</strong> Пожалуйста, исправьте ошибки в форме.
+                        </div>
+                    {% endif %}
+
+                    <form action="{% url 'register' %}" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="{{ user_form.username.id_for_label }}" class="form-label">Логин:</label>
+                            <input type="text" name="{{ user_form.username.html_name }}" id="{{ user_form.username.id_for_label }}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ user_form.first_name.id_for_label }}" class="form-label">Имя:</label>
+                            <input type="text" name="{{ user_form.first_name.html_name }}" id="{{ user_form.first_name.id_for_label }}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ user_form.last_name.id_for_label }}" class="form-label">Фамилия:</label>
+                            <input type="text" name="{{ user_form.last_name.html_name }}" id="{{ user_form.last_name.id_for_label }}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ user_form.bdate.id_for_label }}" class="form-label">Дата Рождения:</label>
+                            <input type="text" name="{{ user_form.bdate.html_name }}" id="{{ user_form.bdate.id_for_label }}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ user_form.email.id_for_label }}" class="form-label">Email:</label>
+                            <input type="email" name="{{ user_form.email.html_name }}" id="{{ user_form.email.id_for_label }}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ user_form.password1.id_for_label }}" class="form-label">Пароль:</label>
+                            <input type="password" name="{{ user_form.password1.html_name }}" id="{{ user_form.password1.id_for_label }}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ user_form.password2.id_for_label }}" class="form-label">Подтверждение пароля:</label>
+                            <input type="password" name="{{ user_form.password2.html_name }}" id="{{ user_form.password2.id_for_label }}" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3 w-100">Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

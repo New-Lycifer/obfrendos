@@ -28,7 +28,9 @@
             </div>
         {% else %}
             <div class="nav-buttons">
+                <a href="{% url 'home' %}" class="btn btn-primary btn-sm">На главную</a>
                 <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Войти</a>
+                <a href="{% url 'register' %}" class="btn btn-secondary btn-sm">Регистрация</a>
             </div>
         {% endif %}
     </div>
