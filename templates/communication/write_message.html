@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Написать сообщение
+{% endblock %}
+
+{% block content %}
+  <h2>Написать сообщение</h2>
+  <form id="message-form" method="post">
+    {% csrf_token %}
+    <div>
+      <label for="recipient">Получатель:</label>
+      <input type="text" id="recipient" name="recipient" value="{{ recipient.username }}" readonly>
+    </div>
+    <div>
+      <label for="content">Сообщение:</label><br>
+      <textarea id="content" name="content" rows="4" cols="50" placeholder="Введите ваше сообщение..."></textarea>
+    </div>
+    <button type="submit">Отправить</button>
+  </form>
+{% endblock %}

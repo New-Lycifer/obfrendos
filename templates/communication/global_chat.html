@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Глобальный чат
+{% endblock %}
+
+{% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/global_chat.css' %}">
+  <h2>Глобальный чат:</h2>
+  <div id="chat-box">
+    {% for message in messages %}
+      <div class="message">
+        <p class="{% if message.author == request.user %}own-message{% endif %}">
+          <small class="text-muted">{{ message.created_at|date:"Y-m-d H:i" }}</small><br>
+          <strong>
+            <a href="{% url 'profile' message.author.id %}" style="text-decoration: none">{{ message.author.username }}</a>
+          </strong>: {{ message.content }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+  <form id="message-form" method="post" action="{% url 'global_chat' %}">
+    {% csrf_token %}
+    <textarea id="message-input" name="content" rows="6" cols="50" placeholder="Введите ваше сообщение..."></textarea><br>
+    <button type="submit" class="btn btn-primary btn-sm">Отправить</button>
+  </form>
+  <script src="{% static 'js/global_chat.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+

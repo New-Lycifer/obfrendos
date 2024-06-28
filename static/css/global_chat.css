@@ -1,0 +1,130 @@
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+#chat-box {
+    width: 80%;
+    margin: 20px auto;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-height: 400px;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.message {
+    margin: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1px;
+    margin-left: 5px;
+    word-wrap: break-word; /* for normal words */
+    overflow-wrap: break-word; /* ensures that long words without spaces break */
+    word-break: break-word; /* for compatibility */
+}
+
+.message strong {
+    color: #007bff;
+}
+
+.message em {
+    font-size: 0.8em;
+    color: gray;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.message p {
+    margin: 0;
+    line-height: 1.2em;
+}
+
+#message-form {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#message-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    resize: none;
+    height: 100px;
+}
+
+.own-message {
+    background-color: #eaf6ff; /* Цвет фона для сообщений пользователя */
+    /* border-left: 3px solid #007bff; Цвет левой границы для выделения */
+    padding-left: 10px; /* Отступ слева для разделения */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.message-time {
+    font-size: 0.8em;
+    color: gray;
+    margin-bottom: 2px;
+}
+
+.message-content {
+    margin-left: 20px;
+}
+
+p {
+    margin: 0;
+    padding: 0px 0;
+}
+
+.footer {
+    position: fixed; /* Фиксированная позиция */
+    bottom: 0; /* Прижимаем к нижней части экрана */
+    width: 100%; /* Ширина футера на всю ширину экрана */
+    background-color: #f8f9fa; /* Цвет фона */
+    padding: 10px 0; /* Внутренний отступ сверху и снизу */
+    text-align: center; /* Выравнивание текста по центру */
+    font-size: 14px; /* Размер шрифта */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content p {
+    display: inline;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.footer-content p:first-child {
+    margin-left: 0;
+}
+
+.footer-content p:last-child {
+    margin-right: 0;
+}

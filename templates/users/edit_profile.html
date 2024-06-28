@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">{{ title }}</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            {% if user.photo %}
+                <img src="{{ user.photo.url }}" alt="User Photo" class="img-thumbnail rounded-circle mb-3" style="width: 200px; height: 200px;">
+            {% else %}
+                <img src="{% static 'images/default_user.png' %}" alt="Default User Photo" class="img-thumbnail rounded-circle mb-3" style="width: 200px; height: 200px;">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-3">Сохранить изменения</button>
+                <a href="{% url 'profile' user.id %}" class="btn btn-secondary mt-3">Перейти к профилю</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+/* Reset для полей отступов и маргинов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    max-width: 120px; /* Увеличиваем размер логотипа */
+    max-height: 80px; /* Подстраиваем высоту, если нужно */
+}
+
+.header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-buttons a, form {
+    margin-left: 10px;
+}
+
+.user-info {
+    margin-left: auto; /* Помещаем информацию о пользователе в правый угол */
+}
+
+.main-container {
+    max-width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center; /* Выравниваем основной контент по центру */
+}
+
+.content-container {
+    width: 80%; /* Основной контент занимает 80% экрана */
+    top: 60px; /* высота вашей шапки */
+    bottom: 60px; /* высота вашего футера */
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    height: calc(100% - 20px);
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .content-container {
+        width: 100%; /* При уменьшении экрана основной контент занимает всю ширину */
+    }
+}
+
+.user-icon {
+    width: 40px; /* Ограничиваем ширину иконки */
+    height: 40px; /* Ограничиваем высоту иконки */
+    border-radius: 50%; /* Делаем иконку круглой */
+    object-fit: cover; /* Чтобы изображение вписывалось в круглую область */
+    margin-left: 10px;
+}
+.user-photo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.footer {
+    position: fixed; /* Фиксированная позиция */
+    bottom: 0; /* Прижимаем к нижней части экрана */
+    width: 100%; /* Ширина футера на всю ширину экрана */
+    background-color: #f8f9fa; /* Цвет фона */
+    padding: 10px 0; /* Внутренний отступ сверху и снизу */
+    text-align: center; /* Выравнивание текста по центру */
+    font-size: 14px; /* Размер шрифта */
+    z-index: 1000;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content p {
+    display: inline;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.footer-content p:first-child {
+    margin-left: 0;
+}
+
+.footer-content p:last-child {
+    margin-right: 0;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+img.img-thumbnail {
+    border: 2px solid #ddd;
+}
