@@ -1,2 +1,3 @@
 # obfrendos
-My social network
+Мой проект социальной сети на Django.
+
